@@ -2,6 +2,9 @@
 
 This project provides a web-based interface for controlling a robot. The interface allows users to send commands to the robot, including movement commands (forward, backward, left, right) and stop. Commands are stored in a MySQL database and displayed in a history section on the page.
 
+<img src=https://github.com/user-attachments/assets/387d908d-95a2-45da-8a8b-eb6a3a522661 width=80%>
+
+
 ## Prerequisites
 - **XAMPP:** A local server environment including Apache and MySQL.
 - **Visual Studio Code (VSCode):** Recommended for code editing.
@@ -51,10 +54,3 @@ This project provides a web-based interface for controlling a robot. The interfa
 Click the respective buttons to send commands to your robot. The command history will display recent commands sent to the robot.
 
 <img src= https://github.com/user-attachments/assets/0d3ba542-7ac9-4275-a582-582f5b28ba6f width=80%>
-
-
-## Contributing
-Contributions to this project are welcome. Please fork the repository and submit a pull request with your changes.
-
-## License
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
