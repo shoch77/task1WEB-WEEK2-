@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Robot Control</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Control Your Robot</h1>
+        <div class="button-container">
+            <button onclick="sendCommand('forward')"><i class="fas fa-arrow-up"></i> Forward</button>
+            <button onclick="sendCommand('backward')"><i class="fas fa-arrow-down"></i> Backward</button>
+            <button onclick="sendCommand('left')"><i class="fas fa-arrow-left"></i> Left</button>
+            <button onclick="sendCommand('right')"><i class="fas fa-arrow-right"></i> Right</button>
+            <button onclick="sendCommand('stop')"><i class="fas fa-stop"></i> Stop</button>
+        </div>
+        <h2>Command History</h2>
+        <ul id="command-history"></ul>
+    </div>
+    <script>
+        function sendCommand(command) {
+            fetch(`control.php?command=${command}`)
+                .then(response => response.text())
+                .then(data => {
+                    console.log(data);
+                    fetchCommands();
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        function fetchCommands() {
+            fetch('control.php?fetch=true')
+                .then(response => response.json())
+                .then(commands => {
+                    const historyList = document.getElementById('command-history');
+                    historyList.innerHTML = '';
+                    commands.forEach(cmd => {
+                        const listItem = document.createElement('li');
+                        listItem.textContent = `${cmd.timestamp}: ${cmd.command}`;
+                        historyList.appendChild(listItem);
+                    });
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        window.onload = fetchCommands;
+    </script>
+</body>
+</html>
